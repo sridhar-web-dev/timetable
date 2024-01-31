@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2024 at 10:39 AM
+-- Generation Time: Jan 25, 2024 at 02:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,40 +31,6 @@ CREATE TABLE `days` (
   `id` int(11) NOT NULL,
   `day_id` varchar(256) NOT NULL,
   `day_name` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `new_table`
---
-
-CREATE TABLE `new_table` (
-  `id` int(11) NOT NULL,
-  `username` varchar(256) NOT NULL,
-  `table_name` varchar(256) NOT NULL,
-  `days` varchar(256) NOT NULL,
-  `period_data` varchar(256) NOT NULL,
-  `start_time` varchar(256) NOT NULL,
-  `end_time` varchar(256) NOT NULL,
-  `period_id` varchar(256) NOT NULL,
-  `subject_name` varchar(256) NOT NULL,
-  `teacher_name` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `periods`
---
-
-CREATE TABLE `periods` (
-  `id` int(11) NOT NULL,
-  `username` varchar(256) NOT NULL,
-  `table_name` varchar(256) NOT NULL,
-  `period_data` varchar(256) NOT NULL,
-  `start_time` varchar(256) NOT NULL,
-  `end_time` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -132,8 +98,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `phone`, `password`) VALUES
-(1, 'name', 'sridharjnet@gmail.com', '6374666745', '12345'),
-(2, 'namedfadasd', 'webdev.sridhar@gmail.com', '1234534534535', '12345');
+(1, 'name', 'sridharjnet@gmail.com', '6374666745', '12345');
 
 --
 -- Indexes for dumped tables
@@ -143,18 +108,6 @@ INSERT INTO `user` (`id`, `name`, `email`, `phone`, `password`) VALUES
 -- Indexes for table `days`
 --
 ALTER TABLE `days`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `new_table`
---
-ALTER TABLE `new_table`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `periods`
---
-ALTER TABLE `periods`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -186,18 +139,6 @@ ALTER TABLE `days`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `new_table`
---
-ALTER TABLE `new_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `periods`
---
-ALTER TABLE `periods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `table_details`
 --
 ALTER TABLE `table_details`
@@ -213,7 +154,7 @@ ALTER TABLE `timetable`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

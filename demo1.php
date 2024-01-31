@@ -3,31 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Time Input Mask</title>
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <!-- Inputmask library -->
-  <script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
+  <title>Timetable</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container mt-5">
-  <h2>Time Input Mask</h2>
-  
-  <form>
-    <div class="form-group">
-      <label for="timeInput">Enter Time:</label>
-      <input type="text" class="form-control" id="timeInput" placeholder="HH:mm" required>
-    </div>
-  </form>
-</div>
+<?php
+// Function to generate timetable HTML
+function generateTimetable($periods) {
+  echo '<table>';
+  echo '<thead>';
+  echo '<tr>';
+  echo '<th>Time</th>';
+  echo '<th>Period</th>';
+  echo '</tr>';
+  echo '</thead>';
+  echo '<tbody>';
 
-<script>
-  $(document).ready(function(){
-    // Apply input mask for time
-    $('#timeInput').inputmask('99:99 AM/PM', { placeholder: 'hh:mm AM/PM' });
-  });
-</script>
+  $startTime = strtotime('08:00 AM'); // Adjust the start time as needed
+
+  for ($i = 1; $i <= $periods; $i++) {
+    $endTime = strtotime("+45 minutes", $startTime);
+    $formattedStartTime = date('h:i A', $startTime);
+    $formattedEndTime = date('h:i A', $endTime);
+
+    echo '<tr>';
+    echo '<td>' . $formattedStartTime . ' - ' . $formattedEndTime . '</td>';
+    echo '<td>Period ' . $i . '</td>';
+    echo '</tr>';
+
+    $startTime = $endTime; // Move to the next period
+  }
+
+  echo '</tbody>';
+  echo '</table>';
+}
+
+// Generate timetable for 8 periods (adjust as needed)
+generateTimetable(8);
+?>
 
 </body>
 </html>
