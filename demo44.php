@@ -34,9 +34,8 @@ function generateTimetable($periods, $breakPositions) {
   echo '</tr>';
   echo '</thead>';
   echo '<tbody>';
-  $time = '08:00 AM';
-  
-  $startTime = strtotime(date('h:i A', strtotime($time))); // Adjust the start time as needed
+
+  $startTime = strtotime('08:00 AM'); // Adjust the start time as needed
   $breakDuration = 15; // Break duration in minutes
 
   for ($i = 1; $i <= $periods; $i++) {
@@ -52,7 +51,6 @@ function generateTimetable($periods, $breakPositions) {
     // Add break if it's a specified break position
     if (in_array($i, $breakPositions)) {
       $startTime = $endTime;
-      $endTime = strtotime("+15 minutes", $startTime);
       $formattedStartTime = date('h:i A', $startTime);
       $formattedEndTime = date('h:i A', strtotime("+{$breakDuration} minutes", $startTime));
 

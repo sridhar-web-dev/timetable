@@ -5,6 +5,10 @@ if(isset($_POST['submit']))
     $time = $_POST['time'];
     $mins = $_POST['mins'];
     $periods = $_POST['periods'];
+    $inputs = [2, 4];
+    // $dataArray = [];
+    
+    $t = date('h:i A', strtotime($time));
     echo date('h:i A', strtotime($time));
     echo $mins;
     echo $periods; 
@@ -17,10 +21,12 @@ if(isset($_POST['submit']))
   echo '</thead>';
   echo '<tbody>';
 
-  $startTime = strtotime('h:i A', strtotime($time)); // Adjust the start time as needed
-
+   // Adjust the start time as needed
+  //  $startTime = date('h:i A', strtotime($time));
+  $startTime = strtotime('$t');
+  $breakDuration = 15;
   for ($i = 1; $i <= $periods; $i++) {
-    $endTime = strtotime("+$mins minutes", $startTime);
+    $endTime = strtotime("+30 minutes", $startTime);
     $formattedStartTime = date('h:i A', $startTime);
     $formattedEndTime = date('h:i A', $endTime);
 
@@ -28,8 +34,17 @@ if(isset($_POST['submit']))
     echo '<td>' . $formattedStartTime . ' - ' . $formattedEndTime . '</td>';
     echo '<td>Period ' . $i . '</td>';
     echo '</tr>';
-
-    $startTime = $endTime; // Move to the next period
+    if (in_array($i, $inputs)) {
+      $startTime = $endTime;
+      $endTime = strtotime("+15 minutes", $startTime);
+      $formattedStartTime = date('h:i A', $startTime);
+      $formattedEndTime = date('h:i A', strtotime("+{$breakDuration} minutes", $startTime));
+      echo '<tr>';
+    echo '<td>' . $formattedStartTime . ' - ' . $formattedEndTime . '</td>';
+    echo '<td>Break ' . $i . '</td>';
+    echo '</tr>';
+    }
+    $startTime = $formattedEndTime; 
   }
 
   echo '</tbody>';
@@ -48,6 +63,8 @@ if(isset($_POST['submit']))
         <input type="time" name="time" id="time">
         <input type="text" name="mins" id="mins" placeholder='mins'>
         <input type="text" name="periods" id="periods" placeholder="periods">
+        <input type="text" name="break" id="break" placeholder="break">
+        <input type="text" name="break1" id="break1" placeholder="break1">
         <input type="submit" name="submit" value="submit">
     </form>
 
